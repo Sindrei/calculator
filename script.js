@@ -13,3 +13,18 @@ function multiply(a, b) {
 function divide(a, b) {
   return a / b;
 }
+
+function operator(operator, a, b) {
+  switch (operator) {
+    case "+":
+      return add(a, b);
+    case "-":
+      return subtract(a, b);
+    case "x":
+      return multiply(a, b);
+    case "/":
+      return divide(a, b);
+    default:
+      break;
+  }
+}
