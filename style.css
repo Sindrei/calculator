@@ -45,6 +45,11 @@ body {
     border: 1px solid darkgrey;
 }
 
+#clear-all,
+#clear-last {
+    width: 140px;
+}
+
 .buttons:hover {
     background-color: lightgray;
 }
