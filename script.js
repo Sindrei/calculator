@@ -1,3 +1,11 @@
+const buttons = document.querySelectorAll(".buttons");
+
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    console.log(button["value"]);
+  });
+});
+
 function add(a, b) {
   return a + b;
 }
