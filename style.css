@@ -4,8 +4,11 @@ body {
 }
 
 .calculator {
+    display: flex;
+    flex-direction: column;
+    flex: auto;
     border: 1px solid black;
-    width: 310px;
+    max-width: 350px;
     margin-top: 100px;
     border-radius: 10px;
     background-color: steelblue;
@@ -13,10 +16,11 @@ body {
 
 .screen {
     display: flex;
+    flex: auto;
     flex-direction: column;
     border: 1px solid grey;
     margin: 10px;
-    height: 120px;
+    min-height: 150px;
     border-radius: 10px;
     background-color: lightcyan
 }
@@ -25,9 +29,11 @@ body {
 .answer-display {
     flex: auto;
     text-align: right;
-    font-size: 35px;
+    font-size: 30px;
     margin: 10px;
+    height: auto;
 }
+
 
 .keypad {
     display: flex;
@@ -38,8 +44,8 @@ body {
 }
 
 .buttons {
-    width: 65px;
-    height: 65px;
+    width: 75px;
+    height: 75px;
     font-size: 30px;
     border-radius: 10px;
     border: 1px solid darkgrey;
@@ -47,7 +53,7 @@ body {
 
 #clear-all,
 #clear-last {
-    width: 140px;
+    width: 160px;
 }
 
 .buttons:hover {

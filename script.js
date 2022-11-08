@@ -1,8 +1,12 @@
-const buttons = document.querySelectorAll(".buttons");
+let displayValue = "";
+const buttons = document.querySelectorAll(".numbers");
+const display = document.querySelector(".number-display");
 
+// Event listeners for number buttons
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
-    console.log(button["value"]);
+    displayValue += button["value"];
+    display.textContent = displayValue;
   });
 });
 
