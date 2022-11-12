@@ -7,6 +7,7 @@ const numberButtons = document.querySelectorAll(".numbers");
 const operatorButtons = document.querySelectorAll(".operator");
 const equalsButton = document.querySelector("#equals");
 const display = document.querySelector(".number-display");
+const allClear = document.querySelector("#clear-all");
 
 // Event listeners for number buttons
 numberButtons.forEach((button) => {
@@ -28,6 +29,14 @@ operatorButtons.forEach((button) => {
 // Event listener for equal sign
 equalsButton.addEventListener("click", equals);
 
+// Event listener for all clear
+allClear.addEventListener("click", () => {
+  display.textContent = "0";
+  firstValue = "";
+  secondValue = "";
+  clearDisplay = false;
+});
+
 function appendNumber(appendValue) {
   if (display.textContent === "0" || clearDisplay === true) {
     display.textContent = appendValue;
@@ -45,9 +54,16 @@ function setOperation(operator) {
 
 function equals() {
   secondValue = display.textContent;
-  display.textContent = operate(currentOperand, firstValue, secondValue);
-  currentOperand = null;
-  clearDisplay = true;
+  if (currentOperand === "÷" && secondValue === "0") {
+    display.textContent = "0";
+    alert("Please don't divide by Zero!");
+    currentOperand = null;
+    clearDisplay = true;
+  } else {
+    display.textContent = operate(currentOperand, firstValue, secondValue);
+    currentOperand = null;
+    clearDisplay = true;
+  }
 }
 
 function add(a, b) {
