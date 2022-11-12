@@ -30,7 +30,6 @@ equalsButton.addEventListener("click", equals);
 
 function appendNumber(appendValue) {
   if (display.textContent === "0" || clearDisplay === true) {
-    if (currentOperand === "=") currentOperand = null;
     display.textContent = appendValue;
     clearDisplay = false;
   } else {
@@ -42,13 +41,12 @@ function setOperation(operator) {
   currentOperand = operator;
   firstValue = display.textContent;
   clearDisplay = true;
-  //display.textContent = "";
 }
 
 function equals() {
   secondValue = display.textContent;
   display.textContent = operate(currentOperand, firstValue, secondValue);
-  currentOperand = "=";
+  currentOperand = null;
   clearDisplay = true;
 }
 
