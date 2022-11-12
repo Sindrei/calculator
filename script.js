@@ -7,7 +7,8 @@ const numberButtons = document.querySelectorAll(".numbers");
 const operatorButtons = document.querySelectorAll(".operator");
 const equalsButton = document.querySelector("#equals");
 const display = document.querySelector(".number-display");
-const allClear = document.querySelector("#clear-all");
+const allClearButton = document.querySelector("#clear-all");
+const dotButton = document.querySelector("#dot");
 
 // Event listeners for number buttons
 numberButtons.forEach((button) => {
@@ -30,13 +31,25 @@ operatorButtons.forEach((button) => {
 equalsButton.addEventListener("click", equals);
 
 // Event listener for all clear
-allClear.addEventListener("click", () => {
+allClearButton.addEventListener("click", () => {
   display.textContent = "0";
   firstValue = "";
   secondValue = "";
   clearDisplay = false;
 });
 
+// Event listener for dot button
+dotButton.addEventListener("click", () => {
+  if (display.textContent.includes(".") === false) {
+    display.textContent += ".";
+  }
+  if (clearDisplay === true) {
+    display.textContent = "0.";
+    clearDisplay = false;
+  }
+});
+
+// Appends numbers to the calculator display
 function appendNumber(appendValue) {
   if (display.textContent === "0" || clearDisplay === true) {
     display.textContent = appendValue;
@@ -46,6 +59,7 @@ function appendNumber(appendValue) {
   }
 }
 
+// Sets the current operation when an operator (+, -, ÷, ×) is pressed
 function setOperation(operator) {
   currentOperand = operator;
   firstValue = display.textContent;
