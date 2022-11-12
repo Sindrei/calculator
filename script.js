@@ -1,7 +1,7 @@
-let displayValue = "";
 let firstValue = "";
 let secondValue = "";
-let operand = null;
+let currentOperand = null;
+let clearDisplay = false;
 
 const numberButtons = document.querySelectorAll(".numbers");
 const operatorButtons = document.querySelectorAll(".operator");
@@ -18,38 +18,38 @@ numberButtons.forEach((button) => {
 // Event listeners for operator buttons
 operatorButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    setOperation(button.textContent);
+    if (currentOperand != null) {
+      equals();
+      setOperation(button.textContent);
+    } else setOperation(button.textContent);
   });
 });
 
 // Event listener for equal sign
-equalsButton.addEventListener("click", () => {
-  equals();
-});
+equalsButton.addEventListener("click", equals);
 
 function appendNumber(appendValue) {
-  display.textContent += appendValue;
-  displayValue = display.textContent;
-}
-
-function setOperation(operator) {
-  if (operand === null) {
-    operand = operator;
-    firstValue = displayValue;
-    display.textContent = "";
-  } else if (operand != null) {
-    equals();
+  if (display.textContent === "0" || clearDisplay === true) {
+    if (currentOperand === "=") currentOperand = null;
+    display.textContent = appendValue;
+    clearDisplay = false;
+  } else {
+    display.textContent += appendValue;
   }
 }
 
+function setOperation(operator) {
+  currentOperand = operator;
+  firstValue = display.textContent;
+  clearDisplay = true;
+  //display.textContent = "";
+}
+
 function equals() {
-  if (operand != null) {
-    secondValue = display.textContent;
-    display.textContent = operate(operand, firstValue, secondValue);
-    displayValue = display.textContent;
-    firstValue = display.textContent;
-    operand = null;
-  } else return;
+  secondValue = display.textContent;
+  display.textContent = operate(currentOperand, firstValue, secondValue);
+  currentOperand = "=";
+  clearDisplay = true;
 }
 
 function add(a, b) {
