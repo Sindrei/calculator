@@ -66,6 +66,11 @@ function equals() {
   }
 }
 
+// Rounds decimal numbers so they do not overflow the screen
+function round(value, decimals = 8) {
+  return Number(Math.round(value + "e" + decimals) + "e-" + decimals);
+}
+
 function add(a, b) {
   return a + b;
 }
@@ -79,7 +84,7 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-  return a / b;
+  return round(a / b);
 }
 
 function operate(operator, a, b) {
