@@ -21,10 +21,7 @@ numberButtons.forEach((button) => {
 // Event listeners for operator buttons
 operatorButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    if (currentOperand != null) {
-      equals();
-      setOperation(button.textContent);
-    } else setOperation(button.textContent);
+    operatorSelected(button.textContent);
   });
 });
 
@@ -32,15 +29,68 @@ operatorButtons.forEach((button) => {
 equalsButton.addEventListener("click", equals);
 
 // Event listener for all clear
-allClearButton.addEventListener("click", () => {
+allClearButton.addEventListener("click", allClear);
+
+// Event listener for dot button
+dotButton.addEventListener("click", appendDot);
+
+// Event listener for backspace button
+backButton.addEventListener("click", backSpace);
+
+// Keyboard event listener
+window.addEventListener("keydown", (e) => {
+  KeyboardInput(e.key);
+});
+
+// takes input from keyboard
+function KeyboardInput(key) {
+  if (key >= 0 || key <= 9) {
+    appendNumber(key);
+  }
+  if (key === "Backspace") {
+    backSpace();
+  }
+  if (key === "Delete") {
+    allClear();
+  }
+  if (key === ".") {
+    appendDot();
+  }
+  if (key === "Enter" || key === "=") {
+    equals();
+  }
+  if (key === "+") {
+    operatorSelected("+");
+  }
+  if (key === "-") {
+    operatorSelected("-");
+  }
+  if (key === "/") {
+    operatorSelected("÷");
+  }
+  if (key === "*") {
+    operatorSelected("×");
+  }
+}
+
+// Operator button press
+function operatorSelected(operator) {
+  if (currentOperand != null) {
+    equals();
+    setOperation(operator);
+  } else setOperation(operator);
+}
+
+// Clears all information from the calculator
+function allClear() {
   display.textContent = "0";
   firstValue = "";
   secondValue = "";
   clearDisplay = false;
-});
+}
 
-// Event listener for dot button
-dotButton.addEventListener("click", () => {
+// adds a point for decimal numbers
+function appendDot() {
   if (display.textContent.includes(".") === false) {
     display.textContent += ".";
   }
@@ -48,10 +98,7 @@ dotButton.addEventListener("click", () => {
     display.textContent = "0.";
     clearDisplay = false;
   }
-});
-
-// Event listener for backspace button
-backButton.addEventListener("click", backSpace);
+}
 
 // Appends numbers to the calculator display
 function appendNumber(appendValue) {
