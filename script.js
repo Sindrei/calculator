@@ -10,6 +10,7 @@ const display = document.querySelector(".number-display");
 const allClearButton = document.querySelector("#clear-all");
 const dotButton = document.querySelector("#dot");
 const backButton = document.querySelector("#clear-last");
+const keys = document.querySelectorAll(".buttons");
 
 // Event listeners for number buttons
 numberButtons.forEach((button) => {
@@ -46,31 +47,56 @@ window.addEventListener("keydown", (e) => {
 function KeyboardInput(key) {
   if (key >= 0 || key <= 9) {
     appendNumber(key);
+    keyPress(key);
   }
   if (key === "Backspace") {
     backSpace();
+    keyPress("c");
   }
-  if (key === "Delete") {
+  if (key === "Delete" || key === "Escape") {
     allClear();
+    keyPress("ac");
   }
   if (key === ".") {
     appendDot();
+    keyPress(".");
   }
   if (key === "Enter" || key === "=") {
     equals();
+    keyPress("=");
   }
   if (key === "+") {
     operatorSelected("+");
+    keyPress("+");
   }
   if (key === "-") {
     operatorSelected("-");
+    keyPress("-");
   }
   if (key === "/") {
     operatorSelected("÷");
+    keyPress("÷");
   }
   if (key === "*") {
     operatorSelected("×");
+    keyPress("×");
   }
+}
+
+keys.forEach((key) => {
+  key.addEventListener("transitionend", removeTransition);
+});
+
+function removeTransition(e) {
+  if (e.propertyName != "transform") return; // skip if not a transform
+  this.classList.remove("buttonPress");
+}
+
+// adds effects to the onscreen buttons when the appropriate key is pressed
+function keyPress(key) {
+  const keyPressed = document.querySelector(`.buttons[value="${key}"]`);
+  keyPressed.classList.add("buttonPress");
+  //numberButtons[`value=${key}`].classList.add("buttonPress");
 }
 
 // Operator button press
@@ -133,10 +159,7 @@ function equals() {
 
 // removes the latest entry on the display
 function backSpace() {
-  display.textContent = display.textContent.slice(
-    0,
-    display.textContent.length - 1
-  );
+  display.textContent = display.textContent.slice(0, -1);
 }
 
 // Rounds decimal numbers so they do not overflow the screen
