@@ -9,6 +9,7 @@ const equalsButton = document.querySelector("#equals");
 const display = document.querySelector(".number-display");
 const allClearButton = document.querySelector("#clear-all");
 const dotButton = document.querySelector("#dot");
+const backButton = document.querySelector("#clear-last");
 
 // Event listeners for number buttons
 numberButtons.forEach((button) => {
@@ -49,6 +50,9 @@ dotButton.addEventListener("click", () => {
   }
 });
 
+// Event listener for backspace button
+backButton.addEventListener("click", backSpace);
+
 // Appends numbers to the calculator display
 function appendNumber(appendValue) {
   if (display.textContent === "0" || clearDisplay === true) {
@@ -78,6 +82,14 @@ function equals() {
     currentOperand = null;
     clearDisplay = true;
   }
+}
+
+// removes the latest entry on the display
+function backSpace() {
+  display.textContent = display.textContent.slice(
+    0,
+    display.textContent.length - 1
+  );
 }
 
 // Rounds decimal numbers so they do not overflow the screen
