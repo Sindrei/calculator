@@ -7,6 +7,7 @@ const numberButtons = document.querySelectorAll(".numbers");
 const operatorButtons = document.querySelectorAll(".operator");
 const equalsButton = document.querySelector("#equals");
 const display = document.querySelector(".number-display");
+const operationsDisplay = document.querySelector(".operation-display");
 const allClearButton = document.querySelector("#clear-all");
 const dotButton = document.querySelector("#dot");
 const backButton = document.querySelector("#clear-last");
@@ -115,6 +116,7 @@ function operatorSelected(operator) {
 // Clears all information from the calculator
 function allClear() {
   display.textContent = "0";
+  operationsDisplay.textContent = "";
   firstValue = "";
   secondValue = "";
   clearDisplay = false;
@@ -145,6 +147,7 @@ function appendNumber(appendValue) {
 function setOperation(operator) {
   currentOperand = operator;
   firstValue = display.textContent;
+  operationsDisplay.textContent = `${firstValue} ${currentOperand}`;
   clearDisplay = true;
 }
 
@@ -158,6 +161,7 @@ function equals() {
     clearDisplay = true;
   } else {
     display.textContent = operate(currentOperand, firstValue, secondValue);
+    operationsDisplay.textContent = `${firstValue} ${currentOperand} ${secondValue} =`;
     currentOperand = null;
     clearDisplay = true;
   }
