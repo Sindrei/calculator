@@ -39,9 +39,14 @@ dotButton.addEventListener("click", appendDot);
 backButton.addEventListener("click", backSpace);
 
 // Keyboard event listener
-window.addEventListener("keydown", (e) => {
-  KeyboardInput(e.key);
-});
+window.addEventListener(
+  "keydown",
+  (e) => {
+    KeyboardInput(e.key);
+    e.preventDefault();
+  },
+  false
+);
 
 // takes input from keyboard
 function KeyboardInput(key) {
@@ -143,6 +148,7 @@ function setOperation(operator) {
   clearDisplay = true;
 }
 
+// takes the two values and sends them to operate to calculate the new value
 function equals() {
   secondValue = display.textContent;
   if (currentOperand === "÷" && secondValue === "0") {
@@ -159,7 +165,10 @@ function equals() {
 
 // removes the latest entry on the display
 function backSpace() {
-  display.textContent = display.textContent.slice(0, -1);
+  if (display.textContent === "0") return;
+  else if (display.textContent.length === 1) {
+    display.textContent = "0";
+  } else display.textContent = display.textContent.slice(0, -1);
 }
 
 // Rounds decimal numbers so they do not overflow the screen
