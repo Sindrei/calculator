@@ -96,13 +96,23 @@ keys.forEach((key) => {
 function removeTransition(e) {
   if (e.propertyName != "transform") return; // skip if not a transform
   this.classList.remove("buttonPress");
+  this.classList.remove("clear-all-key");
+  this.classList.remove("clear-last-key");
 }
 
 // adds effects to the onscreen buttons when the appropriate key is pressed
 function keyPress(key) {
-  const keyPressed = document.querySelector(`.buttons[value="${key}"]`);
-  keyPressed.classList.add("buttonPress");
-  //numberButtons[`value=${key}`].classList.add("buttonPress");
+  if (key === "ac") {
+    const keyPressed = document.querySelector(`.buttons[value="${key}"]`);
+    keyPressed.classList.add("clear-all-key");
+  }
+  if (key === "c") {
+    const keyPressed = document.querySelector(`.buttons[value="${key}"]`);
+    keyPressed.classList.add("clear-last-key");
+  } else {
+    const keyPressed = document.querySelector(`.buttons[value="${key}"]`);
+    keyPressed.classList.add("buttonPress");
+  }
 }
 
 // Operator button press
@@ -154,7 +164,9 @@ function setOperation(operator) {
 // takes the two values and sends them to operate to calculate the new value
 function equals() {
   secondValue = display.textContent;
-  if (currentOperand === "÷" && secondValue === "0") {
+  if (currentOperand === null || operationsDisplay.textContent.includes("=")) {
+    return; // stops function
+  } else if (currentOperand === "÷" && secondValue === "0") {
     display.textContent = "0";
     alert("Please don't divide by Zero!");
     currentOperand = null;
@@ -169,8 +181,10 @@ function equals() {
 
 // removes the latest entry on the display
 function backSpace() {
-  if (display.textContent === "0") return;
+  if (display.textContent === "0") return; // stops function
   else if (display.textContent.length === 1) {
+    display.textContent = "0";
+  } else if (operationsDisplay.textContent.includes("=")) {
     display.textContent = "0";
   } else display.textContent = display.textContent.slice(0, -1);
 }

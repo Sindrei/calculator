@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
 body {
     display: flex;
     justify-content: center;
@@ -32,9 +34,15 @@ body {
     justify-content: space-around;
     text-align: right;
     font-size: 40px;
-    margin: 10px;
+    margin: 10px 20px;
     height: auto;
+    min-height: 45px;
     overflow: hidden;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.operation-display {
+    font-size: 35px;
 }
 
 .keypad {
@@ -66,6 +74,24 @@ body {
     background-color: lightgreen;
 }
 
+#clear-all:hover {
+    background-color: hsl(351, 90%, 80%);
+}
+
+#clear-all:active {
+    background-color: hsl(351, 90%, 85%);
+    transform: scale(1.03);
+}
+
+#clear-last:hover {
+    background-color: hsl(120, 60%, 65%);
+}
+
+#clear-last:active {
+    background-color: hsl(120, 60%, 70%);
+    transform: scale(1.03);
+}
+
 .buttons:hover {
     background-color: lightgray;
 }
@@ -77,5 +103,15 @@ body {
 
 .buttonPress {
     background-color: white;
+    transform: scale(1.03);
+}
+
+.clear-last-key {
+    background-color: hsl(120, 60%, 70%);
+    transform: scale(1.03);
+}
+
+.clear-all-key {
+    background-color: hsl(351, 90%, 85%);
     transform: scale(1.03);
 }
