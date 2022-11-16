@@ -95,9 +95,9 @@ function KeyboardInput(key) {
     operatorSelected("^");
     keyPress("^");
   }
-  if (key === "o") {
+  if (key === "`") {
     plusMinus();
-    keyPress("o");
+    keyPress("`");
   }
 }
 
@@ -114,21 +114,8 @@ function removeTransition(e) {
 
 // adds effects to the onscreen buttons when the appropriate key is pressed
 function keyPress(key) {
-  if (key === "ac") {
-    const keyPressed = document.querySelector(`.buttons[value="${key}"]`);
-    keyPressed.classList.add("clear-all-key");
-  }
-  if (key === "c") {
-    const keyPressed = document.querySelector(`.buttons[value="${key}"]`);
-    keyPressed.classList.add("clear-last-key");
-  }
-  if (key === "p") {
-    const keyPressed = document.querySelector(`.buttons[value="${key}"]`);
-    keyPressed.classList.add("clear-last-key");
-  } else {
-    const keyPressed = document.querySelector(`.buttons[value="${key}"]`);
-    keyPressed.classList.add("buttonPress");
-  }
+  const keyPressed = document.querySelector(`.buttons[value="${key}"]`);
+  keyPressed.classList.add("buttonPress");
 }
 
 // Operator button press
@@ -213,7 +200,7 @@ function backSpace() {
 }
 
 // Rounds decimal numbers so they do not overflow the screen
-function round(value, decimals = 8) {
+function round(value, decimals = 6) {
   return Number(Math.round(value + "e" + decimals) + "e-" + decimals);
 }
 
