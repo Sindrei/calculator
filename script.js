@@ -11,19 +11,20 @@ const operationsDisplay = document.querySelector(".operation-display");
 const allClearButton = document.querySelector("#clear-all");
 const dotButton = document.querySelector("#dot");
 const backButton = document.querySelector("#clear-last");
+const plusMinusButton = document.querySelector("#plusMinus");
 const keys = document.querySelectorAll(".buttons");
 
 // Event listeners for number buttons
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    appendNumber(button.textContent);
+    appendNumber(button["value"]);
   });
 });
 
 // Event listeners for operator buttons
 operatorButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    operatorSelected(button.textContent);
+    operatorSelected(button["value"]);
   });
 });
 
@@ -38,6 +39,9 @@ dotButton.addEventListener("click", appendDot);
 
 // Event listener for backspace button
 backButton.addEventListener("click", backSpace);
+
+// Event listener for plusMinus button
+plusMinusButton.addEventListener("click", plusMinus);
 
 // Keyboard event listener
 window.addEventListener(
@@ -87,6 +91,10 @@ function KeyboardInput(key) {
     operatorSelected("×");
     keyPress("×");
   }
+  if (key === "p") {
+    operatorSelected("^");
+    keyPress("^");
+  }
 }
 
 keys.forEach((key) => {
@@ -107,6 +115,10 @@ function keyPress(key) {
     keyPressed.classList.add("clear-all-key");
   }
   if (key === "c") {
+    const keyPressed = document.querySelector(`.buttons[value="${key}"]`);
+    keyPressed.classList.add("clear-last-key");
+  }
+  if (key === "p") {
     const keyPressed = document.querySelector(`.buttons[value="${key}"]`);
     keyPressed.classList.add("clear-last-key");
   } else {
@@ -179,6 +191,13 @@ function equals() {
   }
 }
 
+// changes display value to a negative or positive number
+function plusMinus() {
+  let displayNumber = Number(display.textContent);
+  if (displayNumber > 0) display.textContent = `${displayNumber * -1}`;
+  else display.textContent = `${displayNumber * -1}`;
+}
+
 // removes the latest entry on the display
 function backSpace() {
   if (display.textContent === "0") return; // stops function
@@ -210,6 +229,10 @@ function divide(a, b) {
   return round(a / b);
 }
 
+function power(a, b) {
+  return Math.pow(a, b);
+}
+
 function operate(operator, a, b) {
   a = Number(a);
   b = Number(b);
@@ -222,5 +245,7 @@ function operate(operator, a, b) {
       return multiply(a, b);
     case "÷":
       return divide(a, b);
+    case "^":
+      return power(a, b);
   }
 }

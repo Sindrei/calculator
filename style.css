@@ -60,11 +60,7 @@ body {
     border-radius: 10px;
     border: 2px solid black;
     transition: all .07s ease;
-}
-
-#clear-all,
-#clear-last {
-    width: 160px;
+    font-family: 'Saira', sans-serif;
 }
 
 #clear-all {

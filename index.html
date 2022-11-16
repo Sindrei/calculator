@@ -20,28 +20,80 @@
         <div class="number-display">0</div>
       </div>
       <div class="keypad">
-        <button id="clear-all" class="buttons" value="ac">AC</button>
-        <button id="clear-last" class="buttons" value="c">C</button>
+        <button
+          id="clear-all"
+          class="buttons"
+          onclick="this.blur();"
+          value="ac"
+        >
+          AC
+        </button>
+        <button
+          id="clear-last"
+          class="buttons"
+          onclick="this.blur();"
+          value="c"
+        >
+          DEL
+        </button>
+        <button class="buttons operator" onclick="this.blur();" value="^">
+          xʸ
+        </button>
+        <button class="buttons operator" onclick="this.blur();" value="÷">
+          ÷
+        </button>
 
-        <button class="buttons numbers" value="7">7</button>
-        <button class="buttons numbers" value="8">8</button>
-        <button class="buttons numbers" value="9">9</button>
-        <button class="buttons operator" value="÷">÷</button>
+        <button class="buttons numbers" onclick="this.blur();" value="7">
+          7
+        </button>
+        <button class="buttons numbers" onclick="this.blur();" value="8">
+          8
+        </button>
+        <button class="buttons numbers" onclick="this.blur();" value="9">
+          9
+        </button>
+        <button class="buttons operator" onclick="this.blur();" value="×">
+          ×
+        </button>
 
-        <button class="buttons numbers" value="4">4</button>
-        <button class="buttons numbers" value="5">5</button>
-        <button class="buttons numbers" value="6">6</button>
-        <button class="buttons operator" value="×">×</button>
+        <button class="buttons numbers" onclick="this.blur();" value="4">
+          4
+        </button>
+        <button class="buttons numbers" onclick="this.blur();" value="5">
+          5
+        </button>
+        <button class="buttons numbers" onclick="this.blur();" value="6">
+          6
+        </button>
+        <button class="buttons operator" onclick="this.blur();" value="-">
+          -
+        </button>
 
-        <button class="buttons numbers" value="1">1</button>
-        <button class="buttons numbers" value="2">2</button>
-        <button class="buttons numbers" value="3">3</button>
-        <button class="buttons operator" value="-">-</button>
+        <button class="buttons numbers" onclick="this.blur();" value="1">
+          1
+        </button>
+        <button class="buttons numbers" onclick="this.blur();" value="2">
+          2
+        </button>
+        <button class="buttons numbers" onclick="this.blur();" value="3">
+          3
+        </button>
+        <button class="buttons operator" onclick="this.blur();" value="+">
+          +
+        </button>
 
-        <button id="dot" class="buttons" value=".">.</button>
-        <button class="buttons numbers" value="0">0</button>
-        <button id="equals" class="buttons" value="=">=</button>
-        <button class="buttons operator" value="+">+</button>
+        <button id="plusMinus" class="buttons" onclick="this.blur();">
+          +/-
+        </button>
+        <button class="buttons numbers" onclick="this.blur();" value="0">
+          0
+        </button>
+        <button id="dot" class="buttons" onclick="this.blur();" value=".">
+          .
+        </button>
+        <button id="equals" class="buttons" onclick="this.blur();" value="=">
+          =
+        </button>
       </div>
     </div>
     <footer class="footer">
