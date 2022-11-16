@@ -95,6 +95,10 @@ function KeyboardInput(key) {
     operatorSelected("^");
     keyPress("^");
   }
+  if (key === "o") {
+    plusMinus();
+    keyPress("o");
+  }
 }
 
 keys.forEach((key) => {
