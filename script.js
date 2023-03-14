@@ -133,6 +133,7 @@ function allClear() {
   firstValue = "";
   secondValue = "";
   clearDisplay = false;
+  currentOperand = null;
 }
 
 // adds a point for decimal numbers
