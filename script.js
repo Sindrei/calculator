@@ -16,16 +16,12 @@ const keys = document.querySelectorAll(".buttons");
 
 // Event listeners for number buttons
 numberButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    appendNumber(button["value"]);
-  });
+  button.addEventListener("click", appendNumber(button["value"]));
 });
 
 // Event listeners for operator buttons
 operatorButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    operatorSelected(button["value"]);
-  });
+  button.addEventListener("click", operatorSelected(button["value"]));
 });
 
 // Event listener for equal sign
@@ -101,10 +97,12 @@ function KeyboardInput(key) {
   }
 }
 
+// add an event listener to listen for any transitions on the buttons
 keys.forEach((key) => {
   key.addEventListener("transitionend", removeTransition);
 });
 
+// removes transitions after they have been applied to buttons
 function removeTransition(e) {
   if (e.propertyName != "transform") return; // skip if not a transform
   this.classList.remove("buttonPress");
@@ -205,26 +203,32 @@ function round(value, decimals = 6) {
   return Number(Math.round(value + "e" + decimals) + "e-" + decimals);
 }
 
+// Add two numbers
 function add(a, b) {
   return a + b;
 }
 
+// Subtract two numbers
 function subtract(a, b) {
   return a - b;
 }
 
+// Multiply two numbers
 function multiply(a, b) {
   return a * b;
 }
 
+// Divide two numbers
 function divide(a, b) {
   return round(a / b);
 }
 
+// Calculates the power of a number
 function power(a, b) {
   return Math.pow(a, b);
 }
 
+// Triggers the appropriate calculation function when an operation needs to be done
 function operate(operator, a, b) {
   a = Number(a);
   b = Number(b);
