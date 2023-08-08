@@ -16,12 +16,12 @@ const keys = document.querySelectorAll(".buttons");
 
 // Event listeners for number buttons
 numberButtons.forEach((button) => {
-  button.addEventListener("click", appendNumber(button["value"]));
+  button.addEventListener("click", () => appendNumber(button["value"]));
 });
 
 // Event listeners for operator buttons
 operatorButtons.forEach((button) => {
-  button.addEventListener("click", operatorSelected(button["value"]));
+  button.addEventListener("click", (button) => operatorSelected(button["value"]));
 });
 
 // Event listener for equal sign
