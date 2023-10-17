@@ -21,7 +21,7 @@ numberButtons.forEach((button) => {
 
 // Event listeners for operator buttons
 operatorButtons.forEach((button) => {
-  button.addEventListener("click", (button) => operatorSelected(button["value"]));
+  button.addEventListener("click", () => operatorSelected(button["value"]));
 });
 
 // Event listener for equal sign
